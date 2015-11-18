@@ -52,8 +52,24 @@ void print_three(Node *T){
 	print_three(T->direita);
 }
 
-void busca(int x){
-	return;
+Node* busca_pai(int x){
+	Node* pai;
+	if (raiz == NULL){
+		return NULL;
+	}
+	while(raiz->n != x){
+		pai = raiz;
+		if(raiz->n > x){
+			raiz = raiz->esquerda;
+		}
+		else {
+			raiz = raiz->direita;
+		}
+		if (raiz == NULL){
+			return NULL;
+		}	
+	}
+	return pai;
 }
 
 void inverte(Node** a, Node** b){
@@ -62,8 +78,8 @@ void inverte(Node** a, Node** b){
 	*b = aux;
 }
 
-void menor_maior(int x, Node* pai){
-	
+Node* menor_dos_maiores(int x, Node* raiz){
+
 }
 
 void retira(int x){
