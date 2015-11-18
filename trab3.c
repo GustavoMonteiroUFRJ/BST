@@ -1,3 +1,7 @@
+/*
+	Estmaos experimentando o git \o/ finalmente !! 
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -7,6 +11,9 @@
 #define MALLOC(variavel,tipo,tamanho)\
 	variavel = (tipo*) malloc(sizeof(tipo)*tamanho);\
 	if(variavel == NULL){printf("Erro no malloc\n"); exit(0);}
+
+
+
 
 struct node
 {
