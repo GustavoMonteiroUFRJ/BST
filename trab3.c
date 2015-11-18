@@ -13,43 +13,53 @@
 	if(variavel == NULL){printf("Erro no malloc\n"); exit(0);}
 
 
-
-
-struct node
-{
+struct node {
 	int n;
 	struct node *direita;
 	struct node *esquerda;
 };
+struct three {
+	struct node *raiz;
+};
 
 typedef struct node Node;
+typedef struct three Three;
 
-void init_three(Node **T){
-	MALLOC((*T),Node,1);
-	(*T)->n = 0;
-	(*T)->direita = NULL;
-	(*T)->esquerda = NULL;
+void init_three(Three *T){
+	T->raiz = NULL;
 }
+void init_node(Node *folha, int x){
+	MALLOC(folha,Node,1);
+	folha->n = x;
+	folha->esquerda = NULL;
+	folha->direita = NULL;
+}
+void add(int x,Three* t){
+	
+	if(t->raiz == NULL){
+		init_node(t->raiz,x);
+		return;
+	}
 
-void add(int x,Node* no){
-	if(x > no->n){
-		if(no->direita == NULL){
-			init_three(&(no->direita));
-		 	no->direita->n = x;
-		 	return;
+	Node raiz = *(t->raiz);
+	
+	while(1){
+		if( x > raiz.n ){
+			if( raiz.direita == NULL ){
+				init_node(raiz.direita,x);
+			 	return;
+			}
+			raiz = *(raiz.direita);
 		}
-		add(x,no->direita);
-		return;
-	}
-	else{
-		if(no->esquerda == NULL){
-			init_three(&(no->esquerda));
-		 	no->esquerda->n = x;
-		 	return;
+		else{
+			if( raiz.esquerda == NULL ){
+				init_node(raiz.esquerda,x);
+			 	return;
+			}
+			raiz = *(raiz.esquerda);
 		}
-		add(x,no->esquerda);
-		return;
 	}
+	return;
 }
 
 void print_three(Node *T){
